@@ -1,0 +1,23 @@
+version: '3'
+#
+# Build salt master and 3 salt minions for lab testing saltstack
+#
+services:
+  salt-master:
+    build:
+      context: .
+      dockerfile: Dockerfile
+  salt-minion-ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile.minion.ubuntu
+    depends_on:
+      - salt-master
+    scale: 1
+  salt-minion-centos:
+    build:
+      context: .
+      dockerfile: Dockerfile.minion.centos
+    depends_on:
+      - salt-master
+    scale: 2

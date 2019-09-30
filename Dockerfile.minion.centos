@@ -1,0 +1,17 @@
+FROM centos:7.5.1804
+LABEL creator="Brian Provenzano" \
+      email="bproven@example.com"
+
+USER root
+
+RUN yum install -y deltarpm \
+https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+https://repo.saltstack.com/py3/redhat/salt-py3-repo-latest-2.el7.noarch.rpm \
+&& yum clean expire-cache \
+&& yum install -y python36 salt-minion \
+&& yum update -y \
+&& yum clean all  && rm -rf /var/cache/yum
+
+RUN sed -i "s/#master: salt/master: salt-master/g" /etc/salt/minion
+
+ENTRYPOINT ["salt-minion", "-l", "debug"]
