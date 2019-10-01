@@ -3,13 +3,18 @@ build:
 	@docker build -t $(IMAGEPREFIX)/salt-master-alpine .
 	@docker build -t $(IMAGEPREFIX)/salt-minion-ubuntu -f Dockerfile.minion.ubuntu .
 	@docker build -t $(IMAGEPREFIX)/salt-minion-centos -f Dockerfile.minion.centos .
-start:
+up:
 	@docker-compose up
 stop:
 	@docker-compose stop salt-master
 	@docker-compose stop salt-minion-ubuntu1
 	@docker-compose stop salt-minion-ubuntu2
 	@docker-compose stop salt-minion-centos
+start:
+	@docker-compose start salt-master
+	@docker-compose start salt-minion-ubuntu1
+	@docker-compose start salt-minion-ubuntu2
+	@docker-compose start salt-minion-centos
 halt: stop
 show-images:
 	@docker images ls
