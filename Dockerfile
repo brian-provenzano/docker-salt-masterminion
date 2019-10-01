@@ -7,7 +7,7 @@ RUN apk --no-cache update &&\
     apk --no-cache add git openssl salt-master
 
 #create the default salt state tree
-RUN mkdir /srv/salt
+RUN mkdir -p /srv/salt /srv/pillar
 
 #default master config with autoaccept turned ON
 COPY src/master /etc/salt/

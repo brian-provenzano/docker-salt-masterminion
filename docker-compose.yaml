@@ -13,6 +13,7 @@ services:
       - ./salt/state:/srv/salt
       - ./salt/cache:/var/cache/salt
       - ./salt/etc:/etc/salt
+      - ./salt/pillar:/srv/pillar
   salt-minion-ubuntu1:
     image: lab/salt-minion-ubuntu:latest
     container_name: salt-minion-ubuntu1

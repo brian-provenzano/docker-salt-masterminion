@@ -16,6 +16,8 @@ start:
 	@docker-compose start salt-minion-ubuntu2
 	@docker-compose start salt-minion-centos
 halt: stop
+stats:
+	@docker ps -q | xargs docker stats
 show-images:
 	@docker images ls
 show-containers:
