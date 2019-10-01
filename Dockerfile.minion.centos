@@ -12,6 +12,7 @@ https://repo.saltstack.com/py3/redhat/salt-py3-repo-latest-2.el7.noarch.rpm \
 && yum update -y \
 && yum clean all  && rm -rf /var/cache/yum
 
-RUN sed -i "s/#master: salt/master: salt-master/g" /etc/salt/minion
+#default minion config with master set properly
+COPY src/minion /etc/salt/
 
 ENTRYPOINT ["salt-minion", "-l", "debug"]

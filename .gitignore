@@ -1,0 +1,3 @@
+#ignore salt cache, etc
+salt/etc/pki
+salt/cache

@@ -1,23 +1,39 @@
-version: '3'
+version: '2'
 #
-# Build salt master and 3 salt minions for lab testing saltstack
+# Run salt master and 2 salt ubuntu minions + 1 centos minion for lab testing saltstack
 #
 services:
   salt-master:
-    build:
-      context: .
-      dockerfile: Dockerfile
-  salt-minion-ubuntu:
-    build:
-      context: .
-      dockerfile: Dockerfile.minion.ubuntu
+    image: lab/salt-master-alpine:latest
+    container_name: salt-master
+    mem_reservation: 512m
+    mem_limit: 1024m
+    hostname: salt-master
+    volumes:
+      - ./salt/state:/srv/salt
+      - ./salt/cache:/var/cache/salt
+      - ./salt/etc:/etc/salt
+  salt-minion-ubuntu1:
+    image: lab/salt-minion-ubuntu:latest
+    container_name: salt-minion-ubuntu1
+    mem_reservation: 256m
+    mem_limit: 512m
+    hostname: salt-minion-ubuntu1
     depends_on:
       - salt-master
-    scale: 1
+  salt-minion-ubuntu2:
+    image: lab/salt-minion-ubuntu:latest
+    container_name: salt-minion-ubuntu2
+    mem_reservation: 256m
+    mem_limit: 512m
+    hostname: salt-minion-ubuntu2
+    depends_on:
+      - salt-master
   salt-minion-centos:
-    build:
-      context: .
-      dockerfile: Dockerfile.minion.centos
+    image: lab/salt-minion-centos:latest
+    container_name: salt-minion-centos
+    mem_reservation: 256m
+    mem_limit: 512m
+    hostname: salt-minion-centos
     depends_on:
       - salt-master
-    scale: 2

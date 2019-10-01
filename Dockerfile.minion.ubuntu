@@ -1,0 +1,24 @@
+FROM ubuntu:18.04
+LABEL creator="Brian Provenzano" \
+      email="bproven@example.com"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    gnupg2 \
+    wget \
+    git \
+    nano \
+    curl \
+    && wget -O - https://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - \
+    && touch /etc/apt/sources.list.d/saltstack.list \
+    && echo "deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main" >> /etc/apt/sources.list.d/saltstack.list
+
+RUN apt-get update && apt-get install -y \
+    salt-minion \
+    && rm -rf /var/lib/apt/lists/*
+
+#default minion config with master set properly
+COPY src/minion /etc/salt/
+
+ENTRYPOINT ["salt-minion", "-l", "debug"]
