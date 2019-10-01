@@ -4,7 +4,7 @@ version: '2'
 #
 services:
   salt-master:
-    image: lab/salt-master-alpine:latest
+    image: lab/salt-master:latest
     container_name: salt-master
     mem_reservation: 512m
     mem_limit: 1024m

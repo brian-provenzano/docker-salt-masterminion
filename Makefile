@@ -1,6 +1,6 @@
 IMAGEPREFIX="lab"
 build:
-	@docker build -t $(IMAGEPREFIX)/salt-master-alpine .
+	@docker build -t $(IMAGEPREFIX)/salt-master -f Dockerfile.master .
 	@docker build -t $(IMAGEPREFIX)/salt-minion-ubuntu -f Dockerfile.minion.ubuntu .
 	@docker build -t $(IMAGEPREFIX)/salt-minion-centos -f Dockerfile.minion.centos .
 up:
@@ -19,7 +19,7 @@ halt: stop
 stats:
 	@docker ps -q | xargs docker stats
 show-images:
-	@docker images ls
+	@docker image ls
 show-containers:
 	@docker container ls --all
 logs-master:
@@ -45,6 +45,6 @@ destroy:
 clean-dangling-images:
 	@docker image prune --force
 clean-all-images:
-	@docker image rm $(IMAGEPREFIX)/salt-master-alpine:latest
+	@docker image rm $(IMAGEPREFIX)/salt-master:latest
 	@docker image rm $(IMAGEPREFIX)/salt-minion-ubuntu:latest
 	@docker image rm $(IMAGEPREFIX)/salt-minion-centos:latest

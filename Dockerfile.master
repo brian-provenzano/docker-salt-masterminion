@@ -1,0 +1,33 @@
+FROM ubuntu:18.04
+LABEL creator="Brian Provenzano" \
+      email="bproven@example.com"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    gnupg2 \
+    wget \
+    git \
+    nano \
+    curl \
+    bash-completion \
+    && wget -O - https://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - \
+    && touch /etc/apt/sources.list.d/saltstack.list \
+    && echo "deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main" >> /etc/apt/sources.list.d/saltstack.list
+
+RUN apt-get update && apt-get install -y \
+    salt-master \
+    && rm -rf /var/lib/apt/lists/*
+
+#setup salt bash autocompletion
+RUN wget https://raw.githubusercontent.com/saltstack/salt/develop/pkg/salt.bash -O /etc/bash_completion.d/salt.bash \ 
+    && echo "source /etc/bash_completion.d/" >> ~/.bashrc
+
+
+#create the default salt state tree
+RUN mkdir -p /srv/salt /srv/pillar
+
+#default master config with autoaccept turned ON
+COPY src/master /etc/salt/
+
+ENTRYPOINT ["salt-master", "-l", "debug"]
