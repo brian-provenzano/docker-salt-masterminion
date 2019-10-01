@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 #setup salt bash autocompletion / create the default salt state tree
 RUN wget https://raw.githubusercontent.com/saltstack/salt/develop/pkg/salt.bash -O /etc/bash_completion.d/salt.bash \
-    && echo "source /etc/bash_completion.d/salt.bash" >> ~/.bashrc
+    && echo "source /etc/bash_completion.d/salt.bash" >> ~/.bashrc \
     && mkdir -p /srv/salt /srv/pillar
 
 #default master config with autoaccept turned ON
