@@ -1,5 +1,5 @@
 ## Docker SaltStack Learning Lab
-Creates a simple master + three salt minions (2 ubuntu and 1 centos) for use in learning or labbing salt locally.  A nice alternative to using vagrant that is much lighter and quicker to deal with.  The master is set to auto accept all minion keys in the `master` config to ease setup and usage.  I have also enabled `cli_summary` as well. Volumes are persisted as long as you do NOT run `make destroy`.  If you wish tos top for the day just run `make stop` or `make halt` which will stop the containers.  To restart run `make start`
+Creates a simple master + three salt minions (2 ubuntu and 1 centos) for use in learning or labbing salt locally.  A nice alternative to using vagrant that is much lighter and quicker to deal with.  The master is set to auto accept all minion keys in the `master` config to ease setup and usage.  I have also enabled `cli_summary` as well. Volumes are persisted as long as you do NOT run `make destroy` (although your states and pillar files are NEVER deleted).  If you wish to stop for the day and pick up later, just run `make stop` or `make halt` which will stop the containers.  To restart again run `make start`.
 
 See the Usage instructions below for more step by step details on usage.
 
