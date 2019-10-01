@@ -31,7 +31,7 @@ logs-minion2:
 logs-minion3:
 	@docker-compose logs -f salt-minion-centos
 cli-master:
-	@docker-compose exec salt-master sh
+	@docker-compose exec salt-master bash
 cli-minion1:
 	@docker-compose exec salt-minion-ubuntu1 bash
 cli-minion2:
