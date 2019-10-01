@@ -10,6 +10,7 @@ See the Usage instructions below for more step by step details on usage.
 
 ### Usage
 Uses a Makefile in order to simplify setup/management and running of the containers.  Please see the Makefile for all the options available.
+
 1. Clone this repo and cd to the root.
 2. Run `make build` to build all the requisite images.
    - If you would like to use Alpine Linux for the master you can modify the `docker-compose.yaml` to use it instead.  I am currently using Ubuntu for simplicity in leveraging the salt command bash completions.
@@ -19,7 +20,7 @@ Uses a Makefile in order to simplify setup/management and running of the contain
 
 
 ### Volumes
-The following directories on the master are mounted locally for ease of use under the `salt` directory in this repo once the containers are running:
+The following directories on the master container are mounted locally for ease of use under the `salt` directory in this repo once the containers are running. See the `docker-compose.yaml` for more info:
 - `/etc/salt`
 - `/srv/salt`
 - `/srv/pillar`
@@ -34,8 +35,8 @@ To cleanup all the images, containers and volumes quickly when you are done (thi
 Optionally you can add a `kill-em-all` to the Makefile to call all of these :)
 
 ### Other Useful Makefile options 
-`clean-all-images` - destroys all the images built during the build process
-`stats` - show container stats
-`cli-minion1`, `cli-minion2` etc - shell access to each minion - see the docker-compose file for details.  Basically 1 and 2 are ubuntu and 3 is a centos minion.
-`show-images` - lists the images used in this lab
-`show-containers` - lists the containers used in this lab
+- `clean-all-images` - destroys all the images built during the build process
+- `stats` - show container stats
+- `cli-minion1`, `cli-minion2` etc - shell access to each minion - see the docker-compose file for details.  Basically 1 and 2 are ubuntu and 3 is a centos minion.
+- `show-images` - lists the images used in this lab
+- `show-containers` - lists the containers used in this lab
