@@ -34,7 +34,7 @@ To cleanup all the images, containers and volumes quickly when you are done (thi
 
 Optionally you can add a `kill-em-all` to the Makefile to call all of these :)
 
-### Other Useful Makefile options 
+### Other Useful Makefile options
 - `clean-all-images` - destroys all the images built during the build process
 - `stats` - show container stats
 - `cli-minion1`, `cli-minion2` etc - shell access to each minion - see the docker-compose file for details.  Basically 1 and 2 are ubuntu and 3 is a centos minion.
