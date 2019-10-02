@@ -6,15 +6,9 @@ build:
 up:
 	@docker-compose up
 stop:
-	@docker-compose stop salt-master
-	@docker-compose stop salt-minion-ubuntu1
-	@docker-compose stop salt-minion-ubuntu2
-	@docker-compose stop salt-minion-centos
+	@docker-compose stop
 start:
-	@docker-compose start salt-master
-	@docker-compose start salt-minion-ubuntu1
-	@docker-compose start salt-minion-ubuntu2
-	@docker-compose start salt-minion-centos
+	@docker-compose start
 halt: stop
 stats:
 	@docker ps -q | xargs docker stats
