@@ -1,3 +1,4 @@
 #ignore salt cache, etc
 salt/etc/pki
+salt/etc/minion_id
 salt/cache
