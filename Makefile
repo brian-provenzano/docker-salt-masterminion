@@ -8,7 +8,7 @@ up:
 stop:
 	@docker-compose stop
 start:
-	@docker-compose start
+	@docker-compose up --no-recreate
 halt: stop
 stats:
 	@docker ps -q | xargs docker stats
