@@ -1,4 +1,7 @@
 IMAGEPREFIX="lab"
+setup:
+	@mkdir -p salt/{build,cache,config,etc,formulas,pillar,state,tests}
+	@mkdir -p salt/state/{common,files}
 build:
 	@docker build -t $(IMAGEPREFIX)/salt-master -f Dockerfile.master .
 	@docker build -t $(IMAGEPREFIX)/salt-minion-ubuntu -f Dockerfile.minion.ubuntu .
