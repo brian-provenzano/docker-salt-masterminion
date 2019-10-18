@@ -12,11 +12,12 @@ See the Usage instructions below for more step by step details on usage.
 Uses a Makefile in order to simplify setup/management and running of the containers.  Please see the Makefile for all the options available.
 
 1. Clone this repo and cd to the root.
-2. Run `make build` to build all the requisite images.
+2. Run `make setup` to create the initial salt subdirectories for ypiur lab (states, pillar, etc, cache...).  Only run this once - any subdirs of `salt` are not included via the `.gitignore`
+3. Run `make build` to build all the requisite images.
    - If you would like to use Alpine Linux for the master you can modify the `docker-compose.yaml` to use it instead.  I am currently using Ubuntu for simplicity in leveraging the salt command bash completions.
-3. Run `make up` to bring up all the containers.  The containers ENTRYPOINT are set to run salt in `debug` mode to make it easier to debug any issues or view the configuration/setup and running of the master/minions.
-4.  Switch to another terminal (same directory) - run `make cli-master`.  This will drop you into the salt master.  Run `salt-key -L` to ensure the minions register.  Watch the logs in the other terminal as well for confirmation.
-5.  Have fun!  Create any states and pillar files in `salt/state` and `salt/pillar` these directories on the host are mounted as volumes in the master container for ease.
+4. Run `make up` to bring up all the containers.  The containers ENTRYPOINT are set to run salt in `debug` mode to make it easier to debug any issues or view the configuration/setup and running of the master/minions.
+5.  Switch to another terminal (same directory) - run `make cli-master`.  This will drop you into the salt master.  Run `salt-key -L` to ensure the minions register.  Watch the logs in the other terminal as well for confirmation.
+6.  Have fun!  Create any states and pillar files in `salt/state` and `salt/pillar` these directories on the host are mounted as volumes in the master container for ease.
 
 
 ### Volumes
